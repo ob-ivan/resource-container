@@ -1,0 +1,8 @@
+{
+    "name" : "ob-ivan/resource-container",
+    "autoload" : {
+        "psr-0" : {
+            "" : "src/"
+        }
+    }
+}
