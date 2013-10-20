@@ -37,7 +37,10 @@ class ResourceContainer implements ArrayAccess
         if (isset($this->factories[$name])) {
             return $this->factories[$name]($this);
         }
-        throw new Exception('Trying to access unknown resource "' . $name . '"');
+        throw new Exception(
+            'Trying to access unknown resource "' . $name . '"',
+            Exception::RESOURCE_NAME_UNKNOWN
+        );
     }
 
     public function offsetSet($name, $value)
@@ -119,7 +122,10 @@ class ResourceContainer implements ArrayAccess
     public function extend($name, callable $extender)
     {
         if (! isset($this->factories[$name])) {
-            throw new Exception('Trying to extend unknown resource "' . $name . '"');
+            throw new Exception(
+                'Trying to extend unknown resource "' . $name . '"',
+                Exception::RESOURCE_NAME_UNKNOWN
+            );
         }
         $factory = $this->factories[$name];
         $this->factories[$name] = $this->share(
